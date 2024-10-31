@@ -18,4 +18,3 @@ app = create_app()
 async def home():
     return {'status' : 'ok'}
 
-a
