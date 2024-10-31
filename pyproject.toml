@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "projeto-rad"
+version = "0.1.0"
+description = ""
+authors = ["Júlio <juliocesar_san@outlook.com>"]
+readme = "README.md"
+packages = [{include = "*", from="src"}]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+fastapi = {extras = ["standard"], version = "^0.115.3"}
+tortoise-orm = {extras = ["asyncpg"], version = "^0.21.7"}
+asyncpg = "^0.30.0"
+
+
+[tool.poetry.group.dev.dependencies]
+taskipy = "^1.14.0"
+
+[tool.taskipy.tasks]
+dev = "fastapi dev dev.py"
+prod = "uvicorn src.api.application:app --host 0.0.0.0 --port 8000 --reload"
+
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
