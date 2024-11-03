@@ -3,6 +3,8 @@ from src.api.dtos.users import UserRegistration, UserLogin
 from src.datalayer.models.user import UserModel
 from src.api.exceptions.user import (login_wrong_excepetion,user_not_exist,email_already_exists)
 from tortoise.exceptions import DoesNotExist, MultipleObjectsReturned
+from fastapi import HTTPException
+from src.api.dtos.users import UserUpdate
 
 router = APIRouter(
    prefix="/users",
@@ -22,6 +24,7 @@ async def register(body: UserRegistration):
         name = body.name,
         email = body.email,
         password = body.password,
+        birth_date = body.birth_date,
     )
     return {'created': user}
 
@@ -45,3 +48,30 @@ async def get_users():
     users = await UserModel.all()
     return {'users': users}
 
+
+
+@router.put("/user_id")
+async def update_user(user_id: int, body: UserUpdate):
+    try:
+        user = await UserModel.get(id=user_id)
+        if body.name:
+            user.name = body.name
+        if body.email:
+            user.email = body.email
+        if body.password:
+            user.password = body.password
+        await user.save()
+        return {"updated": user}
+    except DoesNotExist:
+        raise HTTPException(status_code=404, detail="Usuário não encontrado")
+
+
+
+@router.delete("/user_id")
+async def delete_user(user_id: int):
+    try:
+        user = await UserModel.get(id=user_id)
+        await user.delete()
+        return {"detail": "Usuário Deletado com sucesso"}
+    except DoesNotExist:
+        raise HTTPException(status_code=404, detail="Usuário não encontrado")
