@@ -1,13 +1,12 @@
 from fastapi import FastAPI 
 from tortoise.contrib.fastapi import register_tortoise
-from src.api.routes import users 
+from src.api.routes import users, friendship
 
-def configure_routes(app:FastAPI ):
+def configure_routes(app: FastAPI):
     app.include_router(users.router)
-    
+    app.include_router(friendship.router)
 
-
-def configure_db(app:FastAPI):
+def configure_db(app: FastAPI):
     register_tortoise(
         app=app,
         config={
@@ -18,7 +17,8 @@ def configure_db(app:FastAPI):
             'apps': {
                 'models': {
                     'models': [
-                        'src.datalayer.models.user'
+                        'src.datalayer.models.user',
+                        'src.datalayer.models.friendship'  
                     ],
                     'default_connection': 'default',
                 }

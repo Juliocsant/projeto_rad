@@ -6,3 +6,4 @@ class UserModel(Model):
     name = fields.CharField(max_length = 230)
     email = fields.CharField(max_length = 230, unique=True )
     password = fields.TextField()
+    birth_date = fields.DateField()
