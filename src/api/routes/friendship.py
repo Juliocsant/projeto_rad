@@ -51,3 +51,13 @@ async def block_friend(user_id: int, friend_id: int):
 async def list_friends(user_id: int):
     friends = await FriendshipModel.filter(user_id=user_id, status="active").prefetch_related("friend")
     return {"friends": [await User_Pydantic.from_tortoise_orm(f.friend) for f in friends]}
+
+@router.put("/unblock")
+async def unblock_friend(user_id: int, friend_id: int):
+    updated_count = await FriendshipModel.filter(user_id=user_id, friend_id=friend_id, status="blocked").update(status="active")
+    updated_count += await FriendshipModel.filter(user_id=friend_id, friend_id=user_id, status="blocked").update(status="active")
+
+    if updated_count == 0:
+        raise HTTPException(status_code=404, detail="Amigo não encontrado ou não bloqueado.")
+
+    return {"message": "Amigo desbloqueado com sucesso."}
