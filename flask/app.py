@@ -143,7 +143,11 @@ def gerenciar_amigos():
         return jsonify({"message": "Amizade adicionada com sucesso", "friendship": new_friendship}), 201
 
     elif request.method == 'DELETE':
-        friendship_id = request.args.get('user1_id') + '-' + request.args.get('user2_id')
+        # Defina valores padrão para os parâmetros
+        user1_id = request.args.get('user1_id', '')
+        user2_id = request.args.get('user2_id', '')
+        friendship_id = user1_id + '-' + user2_id
+
         friendship_data = read_csv('friendship.csv')
         friendship_data = [friendship for friendship in friendship_data if f"{friendship[0]}-{friendship[1]}" != friendship_id]
         write_csv('friendship.csv', friendship_data)
@@ -187,8 +191,11 @@ def gerenciar_postagens():
         return jsonify({"message": "Postagem atualizada com sucesso", "post": updated_post})
 
     elif request.method == 'DELETE':
-        # Excluir uma postagem
-        post_id = request.args.get('user_id') + '-' + request.args.get('titulo')
+        # Defina valores padrão para os parâmetros
+        user_id = request.args.get('user_id', '')
+        titulo = request.args.get('titulo', '')
+        post_id = user_id + '-' + titulo
+
         posts_data = read_csv('posts.csv')
         posts_data = [post for post in posts_data if f"{post[0]}-{post[1]}" != post_id]
         write_csv('posts.csv', posts_data)
