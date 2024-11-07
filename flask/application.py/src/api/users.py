@@ -2,7 +2,8 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, EmailStr
 from passlib.context import CryptContext
 from src.api.models import UserModel
-from user import login_wrong_exception, user_not_exist, email_already_exists
+from tortoise.exceptions import DoesNotExist  # Importação da exceção
+from users import login_wrong_exception, user_not_exist, email_already_exists
 
 # Cria o roteador para as rotas de usuários
 user_router = APIRouter()
