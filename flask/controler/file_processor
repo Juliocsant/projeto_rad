@@ -1,7 +1,0 @@
-class FileProcessor:
-    """ Manager of files and folders processor."""
-
-    def __init__(self):
-        self.file_path = 'data/seu_file.csv'
-        self.directory = 'data'
-        self.api_client = APIClient()

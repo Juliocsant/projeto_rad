@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from src.api.configuration import (
+from fastApi.api.configuration import (
     configure_db,
     configure_routes
 )

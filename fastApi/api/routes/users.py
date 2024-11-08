@@ -1,10 +1,10 @@
 from fastapi import APIRouter
-from src.api.dtos.users import UserRegistration, UserLogin
-from src.datalayer.models.user import UserModel
-from src.api.exceptions.user import (login_wrong_excepetion,user_not_exist,email_already_exists)
+from fastApi.api.dtos.users import UserRegistration, UserLogin
+from fastApi.datalayer.models.user import UserModel
+from fastApi.api.exceptions.user import (login_wrong_excepetion,user_not_exist,email_already_exists)
 from tortoise.exceptions import DoesNotExist, MultipleObjectsReturned
 from fastapi import HTTPException
-from src.api.dtos.users import UserUpdate
+from fastApi.api.dtos.users import UserUpdate
 
 router = APIRouter(
    prefix="/users",

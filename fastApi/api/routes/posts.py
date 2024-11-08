@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
-from src.api.dtos.posts import PostRequest  
-from src.api.dtos.friendship import FriendshipRequest  
-from src.datalayer.models.posts import PostModel
-from src.datalayer.models.friendship import FriendshipModel
+from fastApi.api.dtos.posts import PostRequest  
+from fastApi.api.dtos.friendship import FriendshipRequest  
+from fastApi.datalayer.models.posts import PostModel
+from fastApi.datalayer.models.friendship import FriendshipModel
 from tortoise.exceptions import DoesNotExist
 
 router = APIRouter(

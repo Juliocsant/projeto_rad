@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from src.datalayer.models.friendship import FriendshipModel
-from src.datalayer.models.user import UserModel
+from fastApi.datalayer.models.friendship import FriendshipModel
+from fastApi.datalayer.models.user import UserModel
 from tortoise.contrib.pydantic import pydantic_model_creator
 from tortoise.exceptions import DoesNotExist
 
