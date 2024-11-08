@@ -2,9 +2,10 @@ import requests
 
 class APIClient:
     def __init__(self):
-        self.api_url_posts = "http://127.0.0.1:8000/uploadfile/posts"
-        self.api_url_friendship = "http://127.0.0.1:8000/uploadfile/friendship"
-        self.api_url_users = "http://127.0.0.1:8000/uploadfile/users"
+        self.api_url_posts = "http://127.0.0.1:5000/uploadfile/posts"
+        self.api_url_friendship = "http://127.0.0.1:5000/uploadfile/friendship"
+        self.api_url_users = "http://127.0.0.1:5000/uploadfile/users"
+
 
     def send_data_posts(self, data):
         try:
@@ -16,11 +17,17 @@ class APIClient:
 
     def send_data_friendship(self, data):
         try:
-            response = requests.post(self.api_url_friendship, json=data)
+            print("Enviando dados:", data)  # Log dos dados que estão sendo enviados
+            response = requests.post(
+                self.api_url_friendship,
+                json=data,
+                headers={"Content-Type": "application/json"}
+            )
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
             raise Exception(f"Erro ao enviar dados para friendship: {e}")
+
 
     def send_data_users(self, data):
         try:

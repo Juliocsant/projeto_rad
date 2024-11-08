@@ -29,22 +29,23 @@ class FileUploadPosts(Resource):
         except Exception as e:
             return {"error": f"Erro ao salvar o arquivo {file.filename}: {str(e)}"}, 500
         
-@api.route("/uploadfile/frienship")
+@api.route("/uploadfile/friendship")
 class FileUploadFriendship(Resource):
     @api.expect(upload_parser)
     def post(self):
         args = upload_parser.parse_args()
         file = args["file"]
 
-        if file.filename == "":
+        if not file or file.filename == "":
             return {"message": "Nenhum arquivo selecionado"}, 400
 
         read_file = FileProcessor()
 
         try:
-            return read_file.upload_file_frienship(file)
+            return read_file.upload_file_friendship(file)
         except Exception as e:
             return {"error": f"Erro ao salvar o arquivo {file.filename}: {str(e)}"}, 500
+
 
 @api.route("/uploadfile/users")
 class FileUploadUsers(Resource):
