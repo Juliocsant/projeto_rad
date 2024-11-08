@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_restx import Api, Resource, reqparse
 import os
 from werkzeug.datastructures import FileStorage
-from controller.file_processor import FileProcessor
+from flask.controller.file_processor import FileProcessor
 
 # Criação da aplicação Flask
 app = Flask(__name__)
@@ -42,7 +42,7 @@ class FileUploadFriendship(Resource):
         read_file = FileProcessor()
 
         try:
-            return read_file.upload_file_posts(file)
+            return read_file.upload_file_frienship(file)
         except Exception as e:
             return {"error": f"Erro ao salvar o arquivo {file.filename}: {str(e)}"}, 500
 
@@ -59,7 +59,7 @@ class FileUploadUsers(Resource):
         read_file = FileProcessor()
 
         try:
-            return read_file.upload_file_posts(file)
+            return read_file.upload_file_users(file)
         except Exception as e:
             return {"error": f"Erro ao salvar o arquivo {file.filename}: {str(e)}"}, 500
 

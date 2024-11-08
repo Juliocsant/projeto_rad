@@ -18,8 +18,8 @@ def configure_db(app: FastAPI):
             'apps': {
                 'models': {
                     'models': [
-                        'src.datalayer.models.user',
-                        'src.datalayer.models.friendship'  
+                        'fastApi.datalayer.models.user',
+                        'fastApi.datalayer.models.friendship'  
                     ],
                     'default_connection': 'default',
                 }
