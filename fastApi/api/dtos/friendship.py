@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from tortoise.contrib.pydantic import pydantic_model_creator
-from src.datalayer.models.friendship import FriendshipModel
+from fastApi.datalayer.models.friendship import FriendshipModel
 
 class FriendshipRequest(BaseModel):
     user_id: int
