@@ -2,3 +2,7 @@ flask
 flask-restx
 werkzeug
 requests
+fastapi
+uvicorn
+tortoise-orm
+aiosqlite  # Se você estiver usando SQLite

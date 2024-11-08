@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_restx import Api, Resource, reqparse
 import os
 from werkzeug.datastructures import FileStorage
-from flask.controller.file_processor import FileProcessor
+from controller.file_processor import FileProcessor
 
 # Criação da aplicação Flask
 app = Flask(__name__)
